@@ -35,4 +35,17 @@
 // #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #endif // POINTING_DEVICE_ENABLE
 
+/**
+  *
+  * https://docs.bastardkb.com/fw/charybdis-left-handed.html
+  *
+  */
+
+#undef POINTING_DEVICE_RIGHT
+#define POINTING_DEVICE_LEFT
+
+#define POINTING_DEVICE_INVERT_Y
+
+#define ROTATIONAL_TRANSFORM_ANGLE 40
+
 #undef MASTER_RIGHT
