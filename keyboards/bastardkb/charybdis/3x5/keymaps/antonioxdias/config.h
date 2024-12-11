@@ -49,3 +49,14 @@
 #define ROTATIONAL_TRANSFORM_ANGLE 40
 
 #undef MASTER_RIGHT
+
+/**
+  *
+  * Encoder
+  *
+  */
+
+// #define ENCODER_RESOLUTION 2
+
+// #define ENCODERS_PAD_A { ENCODER_LEFT }
+// #define ENCODERS_PAD_B { ENCODER_RIGHT }
