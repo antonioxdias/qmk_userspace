@@ -1,4 +1,16 @@
 {
+    "manufacturer": "Bastard Keyboards",
+    "url": "https://bastardkb.com/charybdis-nano",
+    "usb": {
+        "pid": "0x1832",
+        "vid": "0xA8F8"
+    },
+    "rgb_matrix": {
+        "split_count": [18, 18]
+    },
+    "layout_aliases": {
+        "LAYOUT_charybdis_3x5": "LAYOUT"
+    },
     "layouts": {
         "LAYOUT": {
             "layout": [
@@ -8,7 +20,7 @@
                 { "matrix": [0, 3], "x": 3, "y": 0 },
                 { "matrix": [0, 4], "x": 4, "y": 0 },
 
-                { "matrix": [4, 4], "x": 1, "y": 0 },
+                { "matrix": [4, 4], "x": 11, "y": 0 },
                 { "matrix": [4, 3], "x": 12, "y": 0 },
                 { "matrix": [4, 2], "x": 13, "y": 0 },
                 { "matrix": [4, 1], "x": 14, "y": 0 },
