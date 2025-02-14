@@ -77,7 +77,7 @@ static uint16_t auto_pointer_layer_timer = 0;
                                KC_BSPC,  KC_ENT, KC_TRNS,  KC_TAB, XXXXXXX
 
 #define LAYOUT_LAYER_FNMEDIA                                                                  \
-    XXXXXXX,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, \
+    QK_BOOT,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, \
     KC_CAPS,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     KC_PSCR,   KC_F1,   KC_F2,   KC_F3,  KC_F12, XXXXXXX, KC_BRMD, KC_BRMU, XXXXXXX, XXXXXXX, \
                                 KC_DEL, KC_TRNS,  KC_SPC,  KC_ESC, KC_MPLY
