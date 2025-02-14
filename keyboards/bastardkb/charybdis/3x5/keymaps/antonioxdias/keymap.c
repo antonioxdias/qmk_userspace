@@ -107,9 +107,9 @@ combo_t key_combos[] = {
                                 KC_DEL, KC_TRNS,  KC_SPC,  KC_ESC, KC_MPLY
 
 #define LAYOUT_LAYER_POINTER                                                                  \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN5, XXXXXXX, XXXXXXX, \
+    DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, DPI_MOD, \
+    S_D_MOD, XXXXXXX, SNIPING, DRGSCRL, XXXXXXX, XXXXXXX, DRGSCRL, SNIPING, XXXXXXX, S_D_MOD, \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN3, KC_BTN4, KC_BTN5, XXXXXXX, XXXXXXX, \
                                KC_TRNS, KC_BTN3, KC_BTN1, KC_BTN2, XXXXXXX
 
 /**
@@ -148,11 +148,11 @@ combo_t key_combos[] = {
     L10, L11, L12, L13, L14, R15, R16, R17, R18, R19,                  \
     L20, L21, L22, L23, L24, R25, R26, R27, R28, R29,                  \
     ...)                                                               \
-             L00,         L01,         L02,         L03,         L04,  \
+             L00, _L_PTR(L01),         L02,         L03,         L04,  \
              R05,         R06,         R07, _L_PTR(R08),         R09,  \
              L10,         L11,         L12,         L13,         L14,  \
              R15,         R16,         R17,         R18,         R19,  \
-      _L_PTR(L20),        L21,         L22,         L23,         L24,  \
+             L20,         L21,         L22,         L23,         L24,  \
              R25,         R26,         R27,         R28,         R29, \
       __VA_ARGS__
 #define POINTER_MOD(...) _POINTER_MOD(__VA_ARGS__)
