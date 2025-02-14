@@ -56,6 +56,30 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
 
+
+enum custom_keycodes {
+    KEYMAP = SAFE_RANGE,
+    LOG,
+    ARROWFUNC,
+    LITERAL,
+};
+
+enum combos {
+    JK_M1,
+    KL_M3,
+    COMBO_LENGTH,
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM jk_combo[] = {LALT_T(KC_J), RGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {RGUI_T(KC_K), RSFT_T(KC_L), COMBO_END};
+
+combo_t key_combos[] = {
+    [JK_M1] = COMBO(jk_combo, KC_BTN1),
+    [KL_M3] = COMBO(kl_combo, KC_BTN3),
+};
+
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
@@ -68,18 +92,18 @@ static uint16_t auto_pointer_layer_timer = 0;
     XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, \
     XXXXXXX,    KC_4,    KC_5,    KC_6,    KC_0, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, \
     XXXXXXX,    KC_1,    KC_2,    KC_3, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, XXXXXXX, \
-                               KC_BSPC,  KC_ENT,  KC_SPC, KC_TRNS,    KC_0
+                               KC_BSPC,  KC_ENT,  KC_SPC, KC_TRNS, XXXXXXX
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
     KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_AMPR, KC_SLSH, KC_QUOT, KC_DQUO, KC_ASTR, \
-    KC_PIPE,   KC_NO,   KC_NO, KC_LPRN, KC_LCBR, KC_RCBR, KC_RPRN, KC_QUES, KC_PEQL, KC_PLUS, \
+    KC_PIPE, LITERAL,ARROWFUNC,KC_LPRN, KC_LCBR, KC_RCBR, KC_RPRN, KC_QUES, KC_PEQL, KC_PLUS, \
     KC_BSLS, XXXXXXX, XXXXXXX,   KC_LT, KC_LBRC, KC_RBRC,   KC_GT, KC_TILD,  KC_GRV, KC_CIRC, \
                                KC_BSPC,  KC_ENT, KC_TRNS,  KC_TAB, XXXXXXX
 
 #define LAYOUT_LAYER_FNMEDIA                                                                  \
     QK_BOOT,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, \
-    KC_CAPS,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    KC_PSCR,   KC_F1,   KC_F2,   KC_F3,  KC_F12, XXXXXXX, KC_BRMD, KC_BRMU, XXXXXXX, XXXXXXX, \
+    KC_CAPS,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     LOG, \
+    KC_PSCR,   KC_F1,   KC_F2,   KC_F3,  KC_F12, XXXXXXX, KC_BRMD, KC_BRMU, XXXXXXX,  KEYMAP, \
                                 KC_DEL, KC_TRNS,  KC_SPC,  KC_ESC, KC_MPLY
 
 #define LAYOUT_LAYER_POINTER                                                                  \
@@ -186,3 +210,39 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+      case KEYMAP:
+        if (record->event.pressed) {
+          SEND_STRING("https://github.com/antonioxdias/qmk_userspace/blob/main/keyboards/bastardkb/charybdis/3x5/keymaps/antonioxdias/keymap.c");
+        } else {
+          // when keycode is released
+        }
+        break;
+      case LOG:
+        if (record->event.pressed) {
+          SEND_STRING("console.log()"SS_TAP(X_LEFT));
+        } else {
+          // when keycode is released
+        }
+        break;
+      case ARROWFUNC:
+        if (record->event.pressed) {
+          SEND_STRING("=>");
+        } else {
+          // when keycode is released
+        }
+        break;
+      case LITERAL:
+        if (record->event.pressed) {
+          SEND_STRING("${}"SS_TAP(X_LEFT));
+        } else {
+          // when keycode is released
+        }
+        break;
+  
+      }
+  
+    return true;
+}
