@@ -1,5 +1,6 @@
 #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 200
+#define QUICK_TAP_TERM 0
 
 #define COMBO_TERM 20
 
