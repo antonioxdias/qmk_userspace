@@ -246,3 +246,67 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   
     return true;
 }
+
+static int8_t tab_ticks = 0;
+static int8_t zoom_ticks = 0;
+
+bool encoder_update_user(uint8_t index, bool ccw) {
+    switch(biton32(layer_state)){
+      case LAYER_POINTER:
+        if (ccw) {
+            tap_code(KC_WH_D);
+        } else {
+            tap_code(KC_WH_U);
+        }
+        break;
+    case LAYER_FNMEDIA:
+        if (ccw) { --tab_ticks; } else { ++tab_ticks; }
+        if (abs(tab_ticks) < 2) { break; }
+
+        if (ccw) {
+            register_code16(KC_LCTL);
+            register_code16(KC_LSFT);
+            tap_code(KC_TAB);
+            unregister_code16(KC_LSFT);
+            unregister_code16(KC_LCTL);
+        } else {
+            register_code16(KC_LCTL);
+            tap_code(KC_TAB);
+            unregister_code16(KC_LCTL);
+        }
+        tab_ticks = 0;
+        break;
+    case LAYER_SYMBOLS:
+        if (ccw) { --zoom_ticks; } else { ++zoom_ticks; }
+        if (abs(zoom_ticks) < 2) { break; }
+
+        if (ccw) {
+            register_code16(KC_LALT);
+            tap_code(KC_MINS);
+            unregister_code16(KC_LALT);
+        } else {
+            register_code16(KC_LALT);
+            register_code16(KC_PLUS);
+            unregister_code16(KC_PLUS);
+            unregister_code16(KC_LALT);
+        }
+        zoom_ticks = 0;
+        break;
+    case LAYER_NUMNAV:
+        if (ccw) {
+            tap_code(KC_LEFT);
+        } else {
+            tap_code(KC_RIGHT);
+        }
+        break;
+    default:
+        if (ccw) {
+            tap_code(KC_VOLD);
+        } else {
+            tap_code(KC_VOLU);
+        }
+    }
+    return false;
+}
+
+// qmk compile -c -kb bastardkb/charybdis/3x5 -km antonioxdias
